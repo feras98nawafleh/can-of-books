@@ -1,17 +1,15 @@
-import React from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import React from "react"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
+import Profile from "./components/Profile"
+import Login from "./components/Login"
+import "bootstrap/dist/css/bootstrap.min.css"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import BestBooks from "./components/BestBooks"
 
 class App extends React.Component {
-
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       user: null,
     }
@@ -36,9 +34,14 @@ class App extends React.Component {
           <Header user={this.state.user} onLogout={this.logoutHandler} />
           <Switch>
             <Route exact path="/">
-              {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
+              <BestBooks />
             </Route>
-            {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+            <Route path="/Profile">
+              <Profile />
+            </Route>
+            <Route path="/Login">
+              <Login onLogin={this.loginHandler} />
+            </Route>
           </Switch>
           <Footer />
         </Router>
@@ -47,4 +50,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default App
